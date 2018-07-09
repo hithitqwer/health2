@@ -6,6 +6,12 @@
 	<groupId>com.creator</groupId>
 	<artifactId>health-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<dependencies>
+		<dependency>
+			<groupId>com.creator</groupId>
+			<artifactId>health-model</artifactId>
+		</dependency>
+	</dependencies>
 	<packaging>jar</packaging>
 
 	<name>health-api</name>
@@ -24,6 +30,7 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+	<dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -46,6 +53,7 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>

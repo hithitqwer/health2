@@ -6,7 +6,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="health" />
         <module name="health-api" />
         <module name="health-model" />
         <module name="health-utils" />
@@ -14,7 +13,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="health" target="1.5" />
+      <module name="health" target="1.8" />
       <module name="health-api" target="1.8" />
       <module name="health-model" target="1.8" />
       <module name="health-utils" target="1.8" />

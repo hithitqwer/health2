@@ -1,9 +1,12 @@
 package com.creator.result;
 
-public class LoginResult {
+import java.io.Serializable;
+
+public class LoginResult implements Serializable {
     private Integer code;
-    private String username;
-    private String msg;
+    private String userName;
+    private String userMsg;
+    private Integer userId;
 
     public Integer getCode() {
         return code;
@@ -13,21 +16,27 @@ public class LoginResult {
         this.code = code;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getMsg() {
-        return msg;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
+    public String getUserMsg(String userMsg) {
+        return this.userMsg;
+    }
 
+    public void setUserMsg(String userMsg) {
+        this.userMsg = userMsg;
+    }
 }
