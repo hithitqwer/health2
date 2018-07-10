@@ -16,7 +16,7 @@ public class HealthLogin {
     @RequestMapping("/login")
     public LoginResult login(User user)
     {
-        LoginResult loginResult=new LoginResult();
+        LoginResult loginResult = new LoginResult();
         loginResult.setCode(200);
         loginResult.setUserMsg(user.getUserMsg());
         loginResult.setUserName(user.getUserName());
@@ -24,15 +24,11 @@ public class HealthLogin {
         LOGGER.info("/health/login");
         return loginResult;
     }
-    @RequestMapping("/")
-    public String qw()
-    {
-        return "1234";
-    }
+
     @RequestMapping("/logout")
     public LoginResult logout()
     {
-        LoginResult loginResult=new LoginResult();
+        LoginResult loginResult = new LoginResult();
         loginResult.setUserName("ww");
         loginResult.setUserMsg("123321");
         loginResult.setCode(123);

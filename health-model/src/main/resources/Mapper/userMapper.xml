@@ -7,4 +7,29 @@
         from
           user
     </select>
+    <insert id="insert" parameterType="com.creator.user.User" useGeneratedKeys="true">
+        insert user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userName != null">
+                userName,
+            </if>
+            <if test="userKey != null">
+                userKey,
+            </if>
+            <if test="userMsg != null">
+                userMsg,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userKey != null">
+                #{userKey,jdbcType=VARCHAR},
+            </if>
+            <if test="userMsg != null">
+                #{userMsg,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
 </mapper>

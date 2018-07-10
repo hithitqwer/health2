@@ -1,14 +1,14 @@
 package com.creator.mapper;
 
-import com.creator.user.User;
+import com.creator.Weather;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 @Mapper
 @Repository
-public interface UserMapper {
+public interface WeatherMapper {
 
-    int countNumOfUser();
+    int countNum();
 
-    void insert(User user);
+    int insertWeather(Weather weather);
 }
