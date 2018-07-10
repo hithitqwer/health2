@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @ToString
 public class Lunch implements Serializable {
-    private List<?> list;
+    private List<String> list;
     private List<String> partner;
     private String location;
 }

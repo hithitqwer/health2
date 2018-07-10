@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @ToString
 public class AfterLunch implements Serializable {
-    private List<?> medicine;
+    private List<String> medicine;
     private List<String> fruits;
     private List<String> snacks;
 }
