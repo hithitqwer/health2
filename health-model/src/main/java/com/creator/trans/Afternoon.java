@@ -1,4 +1,4 @@
-package com.creator;
+package com.creator.trans;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,9 +6,9 @@ import lombok.ToString;
 
 import java.io.Serializable;
 
-@Getter
 @Setter
+@Getter
 @ToString
-public class Morning implements Serializable {
-
+public class Afternoon implements Serializable {
+    private String transaction;
 }
