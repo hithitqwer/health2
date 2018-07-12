@@ -11,4 +11,8 @@ public interface UserMapper {
     int countNumOfUser();
 
     void insert(User user);
+
+    User selectByName(String name);
+
+    User selectById(int userId);
 }
