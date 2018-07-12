@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.creator.mapper.ReflectionMapper">
+    <select id="countNum">
+        select
+          count(1)
+        from
+          reflection
+    </select>
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.creator.Reflection">
+        insert
+          reflection
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dayReflection != null">
+                day_reflection,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="dayReflection != null">
+                #{dayReflection,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectByTime">
+        select
+          day_reflection
+        from
+          reflection
+        <where>
+            create_time=#{createTime,jdbcType=DATE}
+        </where>
+    </select>
+    <update id="updateByTime" parameterType="com.creator.Reflection">
+        update
+        reflection
+        <set>
+            <if test="dayReflection != null">
+                day_reflection = #{dayReflection,jdbcType=VARCHAR}
+            </if>
+        </set>
+        <where>
+            create_time = #{createTime,jdbcType=DATE}
+        </where>
+    </update>
+</mapper>
