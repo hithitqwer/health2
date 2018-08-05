@@ -1,18 +1,17 @@
-package com.creator;
+package com.creator.healthwebapp.vo.afterfood;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.List;
 
-@Setter
 @Getter
+@Setter
 @ToString
-public class Breakfast implements Serializable{
-    private Date wakingTime;
-    private List<String> food;
+public class AfterDinnerVO implements Serializable {
     private List<String> medicine;
+    private List<String> fruits;
+    private List<String> snacks;
 }

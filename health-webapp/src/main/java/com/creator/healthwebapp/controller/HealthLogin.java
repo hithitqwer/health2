@@ -1,7 +1,7 @@
 package com.creator.healthwebapp.controller;
 
 import com.creator.result.LoginResult;
-import com.creator.user.User;
+import com.creator.model.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;

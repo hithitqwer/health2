@@ -1,8 +1,8 @@
 package com.creator.healthwebapp.controller;
 
-import com.creator.Weather;
+import com.creator.model.Weather;
 import com.creator.WeatherService;
-import com.creator.WindDirection;
+import com.creator.model.WindDirection;
 import com.creator.result.WeatherResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

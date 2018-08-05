@@ -2,10 +2,9 @@ package com.creator;
 
 import com.creator.exception.ReflectionException;
 import com.creator.mapper.ReflectionMapper;
+import com.creator.model.ReflectionPO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.sql.Date;
 
 @Service
 public class ReflectionImp implements ReflectionService {
@@ -19,17 +18,12 @@ public class ReflectionImp implements ReflectionService {
     }
 
     @Override
-    public int insert(Reflection reflection) {
+    public int insert(ReflectionPO reflection) {
         return reflectionMapper.insert(reflection);
     }
 
     @Override
-    public String selectByTime(Date createTime) {
-        return reflectionMapper.selectByTime(createTime).toString();
-    }
-
-    @Override
-    public int updateByTime(Reflection reflection) {
+    public int updateByTime(ReflectionPO reflection) {
         int opt = reflectionMapper.updateByTime(reflection);
         if(opt == 0) {
             throw new ReflectionException("未更新reflection数据表！");

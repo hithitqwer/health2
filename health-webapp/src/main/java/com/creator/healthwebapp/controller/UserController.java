@@ -1,7 +1,7 @@
 package com.creator.healthwebapp.controller;
 
 import com.creator.UserService;
-import com.creator.user.User;
+import com.creator.model.user.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

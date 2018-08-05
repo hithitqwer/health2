@@ -1,6 +1,6 @@
 package com.creator.mapper;
 
-import com.creator.Weather;
+import com.creator.model.Weather;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

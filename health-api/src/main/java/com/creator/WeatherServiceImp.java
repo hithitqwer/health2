@@ -1,6 +1,7 @@
 package com.creator;
 
 import com.creator.mapper.WeatherMapper;
+import com.creator.model.Weather;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

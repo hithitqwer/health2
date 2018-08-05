@@ -1,18 +1,18 @@
-package com.creator;
+package com.creator.model.food;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.io.Serializable;
 import java.util.List;
 
 @Setter
 @Getter
 @ToString
-public class Lunch implements Serializable {
+public class DinnerPO{
+    private Integer id;
+    private Long code;
     private List<String> list;
     private List<String> partner;
     private String location;
 }
-

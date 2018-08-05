@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.creator.mapper.TransactionMapper">
+    <sql id="AllList">
+        id,code,morning,afternoon,night
+    </sql>
+    <select id="count" resultType="java.lang.Integer">
+        select
+           count(1)
+        from transaction
+    </select>
+    <insert id="insert" parameterType="com.creator.model.TransactionPO" useGeneratedKeys="true" keyProperty="id">
+        insert into transaction
+        (code,morning,afternoon,night)
+        values
+        (#{code,jdbcType=BIGINT},#{morning,jdbcType=VARCHAR},#{afternoon,jdbcType=VARCHAR},#{night,jdbcType=VARCHAR})
+    </insert>
+    <select id="selectByCode" parameterType="java.lang.Long" resultType="com.creator.model.TransactionPO">
+        select
+        <include refid="AllList"/>
+        from transaction
+        where code=#{code,jdbcType=BIGINT}
+    </select>
+</mapper>

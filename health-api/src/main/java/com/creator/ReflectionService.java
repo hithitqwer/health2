@@ -1,13 +1,11 @@
 package com.creator;
 
-import java.sql.Date;
+import com.creator.model.ReflectionPO;
 
 public interface ReflectionService {
     int countNum();
 
-    int insert(Reflection reflection);
+    int insert(ReflectionPO reflection);
 
-    String selectByTime(Date createTime);
-
-    int updateByTime(Reflection reflection);
+    int updateByTime(ReflectionPO reflection);
 }

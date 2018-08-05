@@ -1,0 +1,9 @@
+CREATE TABLE if not exists `transaction`( 
+`id` int(11) NOT NULL AUTO_INCREMENT, 
+`code` bigint(11) NOT NULL,
+`morning` nvarchar(1000), 
+`afternoon` nvarchar(1000), 
+`night` nvarchar(1000), 
+PRIMARY KEY (`ID`),
+INDEX(`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

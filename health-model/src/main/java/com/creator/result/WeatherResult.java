@@ -1,6 +1,6 @@
 package com.creator.result;
 
-import com.creator.Weather;
+import com.creator.model.Weather;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

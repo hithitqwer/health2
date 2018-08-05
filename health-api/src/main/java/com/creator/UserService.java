@@ -1,6 +1,6 @@
 package com.creator;
 
-import com.creator.user.User;
+import com.creator.model.user.User;
 
 public interface UserService {
     int countNumOfUser();

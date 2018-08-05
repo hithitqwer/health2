@@ -1,6 +1,6 @@
 package com.creator.mapper;
 
-import com.creator.user.User;
+import com.creator.model.user.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
