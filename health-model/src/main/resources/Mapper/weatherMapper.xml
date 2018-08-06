@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.creator.mapper.WeatherMapper">
+    <sql id="BaseInfo">
+      id,code,weather,humidity,visibility,pressure,weatherCode,sunrise,sunset,ultraviolet,windForce,airQuality,WindDirectionString,picPath
+    </sql>
     <select id="countNum" resultType="java.lang.Integer">
         select
           count(1)
         from
           weather
     </select>
-    <insert id="insertWeather"  parameterType="com.creator.model.Weather" >
+    <insert id="insertWeather"  parameterType="com.creator.model.WeatherPO" >
         insert weather
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="weather != null">
@@ -64,10 +67,10 @@
                 #{weatherCode,jdbcType=INTEGER},
             </if>
             <if test="sunrise != null">
-                #{sunrise,jdbcType=DATE},
+                #{sunrise,jdbcType=VARCHAR},
             </if>
             <if test="sunset != null">
-                #{sunset,jdbcType=DATE},
+                #{sunset,jdbcType=VARCHAR},
             </if>
             <if test="ultraviolet != null">
                 #{ultraviolet,jdbcType=INTEGER},
@@ -86,4 +89,53 @@
             </if>
         </trim>
     </insert>
+    <select id="selectByCode" parameterType="java.lang.Long" resultType="com.creator.model.WeatherPO">
+        select
+        <include refid="BaseInfo"/>
+        from
+        weather
+        where code=#{code,jdbcType=VARCHAR}
+    </select>
+    <update id="updateByCode" parameterType="com.creator.model.WeatherPO">
+        update weather
+        <set>
+            <if test="weather != null">
+                weather = #{weather,jdbcType=VARCHAR},
+            </if>
+            <if test="humidity != null">
+                humidity = #{humidity,jdbcType=INTEGER},
+            </if>
+            <if test="visibility != null">
+                visibility = #{visibility,jdbcType=VARCHAR},
+            </if>
+            <if test="pressure != null">
+                pressure = #{pressure,jdbcType=INTEGER},
+            </if>
+            <if test="weatherCode != null">
+                weather_Code = #{weatherCode,jdbcType=INTEGER},
+            </if>
+            <if test="sunrise != null">
+                sunrise = #{sunrise,jdbcType=VARCHAR},
+            </if>
+            <if test="sunset != null">
+                sunset = #{sunset,jdbcType=VARCHAR},
+            </if>
+            <if test="ultraviolet != null">
+                ultraviolet = #{ultraviolet,jdbcType=INTEGER},
+            </if>
+            <if test="windForce != null">
+                windForce = #{windForce,jdbcType=INTEGER},
+            </if>
+            <if test="airQuality != null">
+                airQuality = #{airQuality,jdbcType=INTEGER},
+            </if>
+            <if test="picPath != null">
+                picPath = #{picPath,jdbcType=VARCHAR},
+            </if>
+            <if test="WindDirectionString != null">
+                WindDirectionString = #{WindDirectionString,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where code = #{code,jdbcType=BIGINT}
+    </update>
 </mapper>

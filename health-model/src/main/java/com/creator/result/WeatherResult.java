@@ -1,6 +1,6 @@
 package com.creator.result;
 
-import com.creator.model.Weather;
+import com.creator.model.WeatherPO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class WeatherResult implements Serializable {
     private Integer code;
     private Integer userId;
-    private Weather weather;
+    private WeatherPO weather;
     private String userMsg;
     private String msg;
     private Object object;

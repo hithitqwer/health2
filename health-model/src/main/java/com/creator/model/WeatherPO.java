@@ -4,14 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.io.Serializable;
-import java.sql.Date;
-
 
 @Setter
 @Getter
 @ToString
-public class Weather implements Serializable {
+public class WeatherPO {
     private Integer id;
     private Long code;
     private String weather;
@@ -19,8 +16,8 @@ public class Weather implements Serializable {
     private String visibility;
     private Integer pressure;
     private Integer weatherCode;
-    private Date sunrise;
-    private Date sunset;
+    private String sunrise;
+    private String sunset;
     private Integer ultraviolet;
     private Integer windForce;
     private Integer airQuality;

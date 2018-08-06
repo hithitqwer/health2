@@ -1,7 +1,7 @@
 package com.creator;
 
 import com.creator.mapper.WeatherMapper;
-import com.creator.model.Weather;
+import com.creator.model.WeatherPO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +18,18 @@ public class WeatherServiceImp implements WeatherService {
     }
 
     @Override
-    public void insertWeather(Weather weather)
+    public void insertWeather(WeatherPO weather)
     {
         weatherMapper.insertWeather(weather);
+    }
+
+    @Override
+    public WeatherPO selectByCode(Long code) {
+        return weatherMapper.selectByCode(code);
+    }
+
+    @Override
+    public void updateByCode(WeatherPO weatherPO) {
+        weatherMapper.updateByCode(weatherPO);
     }
 }
