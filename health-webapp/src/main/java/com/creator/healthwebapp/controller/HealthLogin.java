@@ -7,11 +7,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author zhangzeyu
+ */
 @RestController
 @RequestMapping("/health")
 public class HealthLogin {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginResult.class);
+    private Logger logger = LoggerFactory.getLogger(HealthLogin.class);
 
     @RequestMapping("/login")
     public LoginResult login(User user)
@@ -21,7 +24,7 @@ public class HealthLogin {
         loginResult.setUserMsg(user.getUserMsg());
         loginResult.setUserName(user.getUserName());
         loginResult.setUserId(user.getUserId());
-        LOGGER.info("/health/login");
+        logger.info("/health/login");
         return loginResult;
     }
 

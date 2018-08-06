@@ -1,5 +1,9 @@
 package com.creator;
 
+/**
+ * @author zhangzeyu
+ */
+
 public enum WindDirection {
     NORTHWEST(1,"西北风"),
     SOUTHWEST(2,"西南风"),

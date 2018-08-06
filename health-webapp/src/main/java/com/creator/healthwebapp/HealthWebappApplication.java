@@ -5,6 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+/**
+ * @author zhangzeyu
+ */
 @ComponentScan("com.creator")
 @SpringBootApplication
 @MapperScan("com.creator.mapper")

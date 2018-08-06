@@ -4,6 +4,7 @@ import com.creator.mapper.UserMapper;
 import com.creator.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -18,6 +19,9 @@ public class UserServiceImp implements UserService {
 
     @Override
     public User selectByName(String userName) {
+        if(StringUtils.isEmpty(userName)) {
+            return null;
+        }
         return userMapper.selectByName(userName);
     }
 

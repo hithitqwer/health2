@@ -9,11 +9,16 @@ import jodd.bean.BeanCopy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
+/**
+ * @author zhangzeyu
+ */
 @RestController
 @RequestMapping("/transaction")
 public class TransactionController {
@@ -26,22 +31,56 @@ public class TransactionController {
     @Resource
     private LoginService loginService;
 
+    @RequestMapping("/count")
+    @ResponseBody
+    public Result<Integer> count() {
+        logger.info("/transaction/count  ");
+        Integer num = transactionService.count();
+        logger.info("/transaction/count  返回num= {}", num);
+        return new Result<>(Result.ErrorCode.OK.getCode(), num, Result.ErrorCode.OK.getMsg());
+    }
+
     @RequestMapping("/write")
     @ResponseBody
     public Result<TransactionPO> write(TransactionVO transactionVO) {
         logger.info("/transaction/write  transactionVO= {}", transactionVO);
-        TransactionPO transactionPO = new TransactionPO();
-        BeanCopy.from(transactionVO).to(transactionPO).copy();
-        transactionService.write(transactionPO);
         Long code = loginService.getCodeByTime();
         TransactionPO transResult = transactionService.selectByCode(code);
+        TransactionPO transactionPO = new TransactionPO();
+        BeanCopy.from(transactionVO).to(transactionPO).copy();
 
-        if(null == transResult) {
-            logger.error("/transaction/write  获取信息不存在");
-            return new Result<>(Result.ErrorCode.ParamCheckError.getCode(), "获取信息不存在");
+        if(Objects.isNull(transResult)) {
+            logger.info("/transaction/write  新录入信息 transactionPO= {}", transactionPO);
+            transactionService.write(transactionPO);
+        }else {
+            logger.info("/transaction/write  更新信息 transactionPO= {}", transactionPO);
+            transactionService.updateByCode(transactionPO);
         }
 
-        logger.info("/transaction/write   transResult= {}", transResult);
+        logger.info("/transaction/write   返回transResult= {}", transResult);
         return new Result<>(Result.ErrorCode.OK.getCode(), transResult, Result.ErrorCode.OK.getMsg());
+    }
+
+    @RequestMapping("/selectByCode")
+    @ResponseBody
+    public Result<TransactionVO> selectByCode(@RequestParam("code") Long code) {
+        logger.info("/transaction/selectByCode  code= {}", code);
+
+        if(Objects.isNull(code)) {
+            logger.error("/transaction/selectByCode code 不能为空");
+            return new Result<>(Result.ErrorCode.ParamCheckError.getCode(),"code 不能为空");
+        }
+
+        TransactionPO transactionPO = transactionService.selectByCode(code);
+
+        if(Objects.isNull(transactionPO)) {
+            logger.info("/transaction/selectByCode  code对应的信息不存在");
+            return new Result<>(Result.ErrorCode.OK.getCode(), "code对应的信息不存在");
+        }
+
+        TransactionVO transactionVO = new TransactionVO();
+        BeanCopy.from(transactionPO).to(transactionVO).copy();
+        logger.info("/transaction/selectByCode  返回transactionVO= {}", transactionVO);
+        return new Result<>(Result.ErrorCode.OK.getCode(), transactionVO, Result.ErrorCode.OK.getMsg());
     }
 }

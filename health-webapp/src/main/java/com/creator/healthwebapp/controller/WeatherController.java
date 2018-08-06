@@ -5,7 +5,6 @@ import com.creator.WeatherService;
 import com.creator.healthwebapp.vo.WeatherVO;
 import com.creator.model.WeatherPO;
 import com.creator.result.Result;
-import com.creator.result.WeatherResult;
 import jodd.bean.BeanCopy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,11 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
+/**
+ * @author zhangzeyu
+ */
 @RestController
 @RequestMapping("/weather")
 public class WeatherController{
 
-    private Logger logger = LoggerFactory.getLogger(WeatherResult.class);
+    private Logger logger = LoggerFactory.getLogger(WeatherController.class);
 
     @Resource
     private WeatherService weatherService;

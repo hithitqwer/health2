@@ -14,6 +14,7 @@ public class LoginServiceImp implements LoginService{
         return null;
     }
 
+    @Override
     public Long getCodeByTime() {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

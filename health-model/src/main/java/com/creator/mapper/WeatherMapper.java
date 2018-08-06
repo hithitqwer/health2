@@ -4,6 +4,9 @@ import com.creator.model.WeatherPO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+/**
+ * @author zhangzeyu
+ */
 @Mapper
 @Repository
 public interface WeatherMapper {

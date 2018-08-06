@@ -8,6 +8,9 @@ import java.io.Serializable;
 import java.sql.Date;
 
 
+/**
+ * @author zhangzeyu
+ */
 @Setter
 @Getter
 @ToString

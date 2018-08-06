@@ -7,6 +7,9 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.sql.Date;
+/**
+ * @author zhangzeyu
+ */
 @Getter
 @Setter
 @ToString

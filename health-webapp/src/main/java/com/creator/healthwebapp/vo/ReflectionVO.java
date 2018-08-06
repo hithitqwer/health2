@@ -6,6 +6,9 @@ import lombok.ToString;
 
 import java.io.Serializable;
 
+/**
+ * @author zhangzeyu
+ */
 @Setter
 @Getter
 @ToString

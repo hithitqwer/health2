@@ -21,4 +21,19 @@
         from transaction
         where code=#{code,jdbcType=BIGINT}
     </select>
+    <update id="updateByCode" parameterType="com.creator.model.TransactionPO">
+        update transaction
+        <set>
+            <if test="morning != null">
+                morning = #{morning,jdbcType=VARCHAR},
+            </if>
+            <if test="afternoon != null">
+                afternoon = #{afternoon,jdbcType=VARCHAR},
+            </if>
+            <if test="night != null">
+                night = #{night,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where code= #{code,jdbcType=BIGINT}
+    </update>
 </mapper>

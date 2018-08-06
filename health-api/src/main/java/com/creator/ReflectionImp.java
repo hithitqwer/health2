@@ -1,6 +1,6 @@
 package com.creator;
 
-import com.creator.exception.ReflectionException;
+import com.creator.exception.HealthException;
 import com.creator.mapper.ReflectionMapper;
 import com.creator.model.ReflectionPO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class ReflectionImp implements ReflectionService {
     public int updateByTime(ReflectionPO reflection) {
         int opt = reflectionMapper.updateByTime(reflection);
         if(opt == 0) {
-            throw new ReflectionException("未更新reflection数据表！");
+            throw new HealthException("未更新reflection数据表！");
         }
         return opt;
     }

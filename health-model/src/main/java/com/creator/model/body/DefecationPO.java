@@ -16,5 +16,4 @@ public class DefecationPO {
     private String feel;
     private String feelAfter;
     private Date time;
-    private String surrounding;
 }
