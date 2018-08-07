@@ -11,4 +11,6 @@ public interface WeatherService {
     WeatherPO selectByCode(Long code);
 
     void updateByCode(WeatherPO weather);
+
+    void delete(Long code);
 }

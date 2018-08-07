@@ -16,4 +16,8 @@ public interface ReflectionMapper {
     int insert(ReflectionPO reflection);
 
     int updateByTime(ReflectionPO reflection);
+
+    ReflectionPO selectByCode(Long code);
+
+    int delete(Long code);
 }

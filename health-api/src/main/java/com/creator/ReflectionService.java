@@ -8,4 +8,8 @@ public interface ReflectionService {
     int insert(ReflectionPO reflection);
 
     int updateByTime(ReflectionPO reflection);
+
+    ReflectionPO selectByCode(Long code);
+
+    void delete(Long code);
 }

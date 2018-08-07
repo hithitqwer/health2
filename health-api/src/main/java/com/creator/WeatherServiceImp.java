@@ -5,6 +5,8 @@ import com.creator.model.WeatherPO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 public class WeatherServiceImp implements WeatherService {
 
@@ -31,5 +33,13 @@ public class WeatherServiceImp implements WeatherService {
     @Override
     public void updateByCode(WeatherPO weatherPO) {
         weatherMapper.updateByCode(weatherPO);
+    }
+
+    @Override
+    public void delete(Long code) {
+        if(Objects.isNull(code) || Objects.isNull(selectByCode(code))) {
+            return;
+        }
+        weatherMapper.delete(code);
     }
 }

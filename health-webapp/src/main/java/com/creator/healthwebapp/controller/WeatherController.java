@@ -8,10 +8,7 @@ import com.creator.result.Result;
 import jodd.bean.BeanCopy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -37,13 +34,13 @@ public class WeatherController{
         return new Result<>(Result.ErrorCode.OK.getCode(), num, Result.ErrorCode.OK.getMsg());
     }
 
-    @RequestMapping("/insert")
+    @RequestMapping("/write")
     @ResponseBody
-    public Result<WeatherVO> insertWeather(WeatherVO weather) {
-        logger.info("/weather/insert  weather= {}", weather);
+    public Result<WeatherVO> insertWeather(@RequestBody WeatherVO weather) {
+        logger.info("/weather/write  weather= {}", weather);
 
         if(null == weather) {
-            logger.error("/weather/insert   weather is null");
+            logger.error("/weather/write   weather is null");
             return new Result<>(Result.ErrorCode.ParamCheckError.getCode(), Result.ErrorCode.ParamCheckError.getMsg());
         }
 
@@ -60,7 +57,7 @@ public class WeatherController{
         WeatherPO weatherSelect = weatherService.selectByCode(code);
         WeatherVO weatherVOR = new WeatherVO();
         BeanCopy.from(weatherSelect).to(weatherVOR).copy();
-        logger.info("/weather/insert  params={}", weather);
+        logger.info("/weather/write  params={}", weather);
         return new Result<>(Result.ErrorCode.OK.getCode(), weatherVOR, Result.ErrorCode.OK.getMsg());
     }
 
@@ -85,4 +82,5 @@ public class WeatherController{
         logger.info("/weather/selectByCode  code= {} 对应的结果为 {}", code, weatherPO);
         return new Result<>(Result.ErrorCode.OK.getCode(), weatherVO, Result.ErrorCode.OK.getMsg());
     }
+
 }

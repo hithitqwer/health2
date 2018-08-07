@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.creator.mapper.ReflectionMapper">
+    <sql id="BaseInfo">
+        id,code,dayReflection,surrounding
+    </sql>
     <select id="countNum" resultType="java.lang.Integer">
         select
           count(1)
@@ -9,24 +12,27 @@
     </select>
     <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.creator.model.ReflectionPO">
         insert
-          reflection
+        reflection
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="dayReflection != null">
-                day_reflection,
+                dayReflection,
             </if>
-            <if test="createTime != null">
-                create_time,
+            <if test="surrounding != null">
+                surrounding
+            </if>
+            <if test="code != null">
+                code,
             </if>
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
             <if test="dayReflection != null">
                 #{dayReflection,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null">
-                #
-            </if>
             <if test="surrounding != null">
                 #{surrounding,jdbcType=VARCHAR}
+            </if>
+            <if test="code != null">
+                #{code,jdbcType=BIGINT}
             </if>
         </trim>
     </insert>
@@ -35,11 +41,23 @@
         reflection
         <set>
             <if test="dayReflection != null">
-                day_reflection = #{dayReflection,jdbcType=VARCHAR}
+                dayReflection = #{dayReflection,jdbcType=VARCHAR}
+            </if>
+            <if test="surrounding != null">
+                surrounding = #{surrounding,jdbcType=VARCHAR}
             </if>
         </set>
         <where>
-            create_time = #{createTime,jdbcType=DATE}
+            code = #{code,jdbcType=BIGINT}
         </where>
     </update>
+    <select id="selectByCode" parameterType="java.lang.Long" resultType="com.creator.model.ReflectionPO">
+        select
+        <include refid="BaseInfo"/>
+        from reflection where code = #{code,jdbcType=BIGINT}
+    </select>
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from reflection
+        where code= #{code,jdbcType=BIGINT}
+    </delete>
 </mapper>

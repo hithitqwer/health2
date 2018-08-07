@@ -30,4 +30,20 @@ public class ReflectionImp implements ReflectionService {
         }
         return opt;
     }
+
+    @Override
+    public ReflectionPO selectByCode(Long code) {
+        if(null == code) {
+            return null;
+        }
+        return reflectionMapper.selectByCode(code);
+    }
+
+    @Override
+    public void delete(Long code) {
+        if(null == code || null == selectByCode(code)) {
+            return;
+        }
+        reflectionMapper.delete(code);
+    }
 }

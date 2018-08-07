@@ -1,12 +1,18 @@
 package com.creator.healthwebapp.controller;
 
+import com.creator.LoginService;
 import com.creator.ReflectionService;
-import com.creator.exception.HealthException;
+import com.creator.healthwebapp.vo.ReflectionVO;
 import com.creator.model.ReflectionPO;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.creator.result.Result;
+import jodd.bean.BeanCopy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
 /**
  * @author zhangzeyu
@@ -15,20 +21,80 @@ import javax.annotation.Resource;
 @RequestMapping("/reflection")
 public class ReflectionController {
 
+    private Logger logger = LoggerFactory.getLogger(ReflectionController.class);
+
     @Resource
     private ReflectionService reflectionService;
 
-    @RequestMapping("/insert")
-    public int insert(ReflectionPO reflection) {
-        int opt = reflectionService.insert(reflection);
-        if(opt == 0) {
-            throw new HealthException("未成功插入reflection数据！");
-        }
-        return opt;
+    @Resource
+    private LoginService loginService;
+
+    @RequestMapping("/count")
+    @ResponseBody
+    public Result<Integer> count() {
+        logger.info("/reflection/count  ");
+        Integer num = reflectionService.countNum();
+        logger.info("/reflection/count  num= {}", num);
+        return new Result<>(Result.ErrorCode.OK.getCode(), num , Result.ErrorCode.OK.getMsg());
     }
 
-    @RequestMapping("/updateByTime")
-    public int updateByTime(ReflectionPO reflection) {
-        return reflectionService.updateByTime(reflection);
+    @RequestMapping("/selectByCode")
+    @ResponseBody
+    public Result<ReflectionVO> selectByCode(@RequestParam("code") Long code) {
+        logger.info("/reflection/count  code= {}", code);
+        if(ObjectUtils.isEmpty(code)) {
+            logger.info("/reflection/count code为空");
+            return new Result<>(Result.ErrorCode.ParamCheckError.getCode(),"传入code为空");
+        }
+        ReflectionPO reflectionPO = reflectionService.selectByCode(code);
+        ReflectionVO reflectionVO = new ReflectionVO();
+        BeanCopy.from(reflectionPO).to(reflectionVO).copy();
+        logger.info("/reflection/count  reflectionVO= {}", reflectionVO);
+        return new Result<>(Result.ErrorCode.OK.getCode(), reflectionVO, Result.ErrorCode.OK.getMsg());
+    }
+
+    @RequestMapping("/write")
+    @ResponseBody
+    public Result<ReflectionVO> insert(@RequestBody ReflectionVO reflection) {
+        logger.info("/reflection/write  reflection= {}", reflection);
+        Long code = loginService.getCodeByTime();
+        ReflectionPO reflectionPO = new ReflectionPO(code);
+        if(Objects.isNull(reflectionService.selectByCode(code))) {
+            BeanCopy.from(reflection).to(reflectionPO).copy();
+            reflectionService.insert(reflectionPO);
+        }else {
+            reflectionService.updateByTime(reflectionPO);
+        }
+
+        if(Objects.isNull(reflectionService.selectByCode(code))) {
+            logger.error("/reflection/write   reflection= {}  信息写入失败", reflection);
+            return new Result<>(Result.ErrorCode.ParamCheckError.getCode(), reflection, "信息写入失败");
+        }
+        ReflectionVO result = new ReflectionVO();
+        BeanCopy.from(reflectionService.selectByCode(code)).to(result).copy();
+        logger.info("/reflection/write  reflection= {}", result);
+        return new Result<>(Result.ErrorCode.OK.getCode(), result, Result.ErrorCode.OK.getMsg());
+    }
+
+    @RequestMapping("/deleteByCode")
+    @ResponseBody
+    public Result<ReflectionVO> delete(@RequestParam("code") Long code) {
+        logger.info("/reflection/deleteByCode  code= {}", code);
+        if(Objects.isNull(code)) {
+            logger.info("/reflection/deleteByCode  code为空");
+            return new Result<>(Result.ErrorCode.ParamCheckError.getCode(), "code不能为空");
+        }
+        ReflectionPO reflectionPO = reflectionService.selectByCode(code);
+        if(Objects.isNull(reflectionPO)) {
+            logger.info("/reflection/deleteByCode  code对应信息不存在");
+        }
+        reflectionService.delete(code);
+        if(!Objects.isNull(reflectionService.selectByCode(code))) {
+            logger.error("/reflection/deleteByCode  code对应信息删除失败");
+        }
+        ReflectionVO reflectionVO = new ReflectionVO();
+        BeanCopy.from(reflectionPO).to(reflectionVO).copy();
+        logger.info("/reflection/deleteByCode  code对应信息 {}  已删除", reflectionVO);
+        return new Result<>(Result.ErrorCode.OK.getCode(), reflectionVO, Result.ErrorCode.OK.getMsg());
     }
 }

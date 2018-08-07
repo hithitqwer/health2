@@ -12,4 +12,8 @@ public class ReflectionPO {
     private Long code;
     private String dayReflection;
     private String surrounding;
+
+    public ReflectionPO(Long code) {
+        this.code = code;
+    }
 }

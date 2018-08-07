@@ -13,6 +13,9 @@
     <insert id="insertWeather"  parameterType="com.creator.model.WeatherPO" >
         insert weather
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                code,
+            </if>
             <if test="weather != null">
                 weather,
             </if>
@@ -26,7 +29,7 @@
                 pressure,
             </if>
             <if test="weatherCode != null">
-                weather_Code,
+                weatherCode,
             </if>
             <if test="sunrise != null">
                 sunrise,
@@ -51,6 +54,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                #{code,jdbcType=BIGINT}
+            </if>
             <if test="weather != null">
                 #{weather,jdbcType=VARCHAR},
             </if>
@@ -94,7 +100,7 @@
         <include refid="BaseInfo"/>
         from
         weather
-        where code=#{code,jdbcType=VARCHAR}
+        where code=#{code,jdbcType=BIGINT}
     </select>
     <update id="updateByCode" parameterType="com.creator.model.WeatherPO">
         update weather
@@ -112,7 +118,7 @@
                 pressure = #{pressure,jdbcType=INTEGER},
             </if>
             <if test="weatherCode != null">
-                weather_Code = #{weatherCode,jdbcType=INTEGER},
+                weatherCode = #{weatherCode,jdbcType=INTEGER},
             </if>
             <if test="sunrise != null">
                 sunrise = #{sunrise,jdbcType=VARCHAR},
@@ -138,4 +144,8 @@
         </set>
         where code = #{code,jdbcType=BIGINT}
     </update>
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from weather
+        where code= #{code,jdbcType=BIGINT}
+    </delete>
 </mapper>

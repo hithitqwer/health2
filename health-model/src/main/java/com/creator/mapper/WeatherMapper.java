@@ -18,4 +18,6 @@ public interface WeatherMapper {
     WeatherPO selectByCode(Long code);
 
     int updateByCode(WeatherPO weather);
+
+    void delete(Long code);
 }

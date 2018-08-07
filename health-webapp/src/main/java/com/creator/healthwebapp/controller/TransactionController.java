@@ -8,10 +8,7 @@ import com.creator.result.Result;
 import jodd.bean.BeanCopy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Objects;
@@ -42,7 +39,7 @@ public class TransactionController {
 
     @RequestMapping("/write")
     @ResponseBody
-    public Result<TransactionPO> write(TransactionVO transactionVO) {
+    public Result<TransactionPO> write(@RequestBody TransactionVO transactionVO) {
         logger.info("/transaction/write  transactionVO= {}", transactionVO);
         Long code = loginService.getCodeByTime();
         TransactionPO transResult = transactionService.selectByCode(code);
