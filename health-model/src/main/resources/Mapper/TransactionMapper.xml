@@ -36,4 +36,8 @@
         </set>
         where code= #{code,jdbcType=BIGINT}
     </update>
+    <delete id="deleteByCode" parameterType="java.lang.Long">
+        delete from transaction
+        where code= #{code,jdbcType=BIGINT}
+    </delete>
 </mapper>

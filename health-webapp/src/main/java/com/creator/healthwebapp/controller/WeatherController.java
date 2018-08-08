@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
 /**
  * @author zhangzeyu
@@ -80,6 +81,36 @@ public class WeatherController{
         WeatherVO weatherVO = new WeatherVO();
         BeanCopy.from(weatherPO).to(weatherVO).copy();
         logger.info("/weather/selectByCode  code= {} 对应的结果为 {}", code, weatherPO);
+        return new Result<>(Result.ErrorCode.OK.getCode(), weatherVO, Result.ErrorCode.OK.getMsg());
+    }
+
+    @RequestMapping("/deleteByCode")
+    @ResponseBody
+    public Result<WeatherVO> delete(@RequestParam("code") Long code) {
+        logger.info("/weather/deleteByCode   code= {}", code);
+        if(Objects.isNull(code)) {
+            logger.error("/weather/deleteByCode   code不能为空");
+            return new Result<>(Result.ErrorCode.ParamCheckError.getCode(),"code不能为空");
+        }
+        WeatherPO weatherPO = weatherService.selectByCode(code);
+        if(Objects.isNull(weatherPO)) {
+            logger.info("/weather/deleteByCode   code对应的信息不存在");
+            return new Result<>(Result.ErrorCode.OK.getCode(),"code对应的信息不存在");
+        }
+
+        try{
+            weatherService.delete(code);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if(!Objects.isNull(weatherService.selectByCode(code))) {
+            logger.error("/weather/deleteByCode   code对应的信息删除失败  weatherPO={}", weatherPO);
+            return new Result<>(Result.ErrorCode.ParamCheckError.getCode(),"code对应的信息删除失败");
+        }
+        WeatherVO weatherVO = new WeatherVO();
+        BeanCopy.from(weatherPO).to(weatherVO).copy();
+        logger.info("/weather/deleteByCode  code对应的信息成功删除  {}", weatherVO);
         return new Result<>(Result.ErrorCode.OK.getCode(), weatherVO, Result.ErrorCode.OK.getMsg());
     }
 

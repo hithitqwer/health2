@@ -44,4 +44,12 @@ public class TransactionServiceImp implements TransactionService {
         }
         return transactionMapper.updateByCode(transactionPO);
     }
+
+    @Override
+    public void deleteByCode(Long code) {
+        if(Objects.isNull(code)) {
+            return;
+        }
+        transactionMapper.deleteByCode(code);
+    }
 }

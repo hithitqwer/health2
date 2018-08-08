@@ -80,4 +80,34 @@ public class TransactionController {
         logger.info("/transaction/selectByCode  返回transactionVO= {}", transactionVO);
         return new Result<>(Result.ErrorCode.OK.getCode(), transactionVO, Result.ErrorCode.OK.getMsg());
     }
+
+    @RequestMapping("/deleteByCode")
+    @ResponseBody
+    public Result<TransactionVO> delete(@RequestParam("code") Long code) {
+        logger.info("/transaction/deleteByCode  code= {}", code);
+        if(Objects.isNull(code)) {
+            logger.info("/transaction/deleteByCode  code不能为空");
+            return new Result<>(Result.ErrorCode.ParamCheckError.getCode(), "code不能为空");
+        }
+        TransactionPO transactionPO = transactionService.selectByCode(code);
+        if(Objects.isNull(transactionPO)) {
+            logger.info("/transaction/deleteByCode  code对应信息不存在");
+            return new Result<>(Result.ErrorCode.OK.getCode(),"code对应信息不存在");
+        }
+
+        try{
+            transactionService.deleteByCode(code);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if(!Objects.isNull(transactionService.selectByCode(code))) {
+            logger.error("/transaction/deleteByCode  code对应信息删除失败  transactionPO={}", transactionPO);
+            return new Result<>(Result.ErrorCode.ParamCheckError.getCode(), "code对应信息删除失败");
+        }
+        TransactionVO transactionVO = new TransactionVO();
+        BeanCopy.from(transactionPO).to(transactionVO).copy();
+        logger.info("/transaction/deleteByCode  code对应信息删除成功  transactionPO={}", transactionPO);
+        return new Result<>(Result.ErrorCode.OK.getCode(), transactionVO, Result.ErrorCode.OK.getMsg());
+    }
 }

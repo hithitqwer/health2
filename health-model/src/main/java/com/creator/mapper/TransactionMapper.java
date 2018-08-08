@@ -18,4 +18,6 @@ public interface TransactionMapper {
     TransactionPO selectByCode(Long code);
 
     int updateByCode(TransactionPO transactionPO);
+
+    void deleteByCode(Long code);
 }

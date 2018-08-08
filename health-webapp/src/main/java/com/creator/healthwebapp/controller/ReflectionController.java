@@ -8,7 +8,6 @@ import com.creator.result.Result;
 import jodd.bean.BeanCopy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -42,11 +41,15 @@ public class ReflectionController {
     @ResponseBody
     public Result<ReflectionVO> selectByCode(@RequestParam("code") Long code) {
         logger.info("/reflection/count  code= {}", code);
-        if(ObjectUtils.isEmpty(code)) {
+        if(Objects.isNull(code)) {
             logger.info("/reflection/count code为空");
             return new Result<>(Result.ErrorCode.ParamCheckError.getCode(),"传入code为空");
         }
         ReflectionPO reflectionPO = reflectionService.selectByCode(code);
+        if(Objects.isNull(reflectionPO)) {
+            logger.error("/reflection/count code对应信息不存在");
+            return new Result<>(Result.ErrorCode.ParamCheckError.getCode(),"code对应信息不存在");
+        }
         ReflectionVO reflectionVO = new ReflectionVO();
         BeanCopy.from(reflectionPO).to(reflectionVO).copy();
         logger.info("/reflection/count  reflectionVO= {}", reflectionVO);
@@ -78,7 +81,7 @@ public class ReflectionController {
 
     @RequestMapping("/deleteByCode")
     @ResponseBody
-    public Result<ReflectionVO> delete(@RequestParam("code") Long code) {
+    public Result<ReflectionVO> delete(@RequestParam("code") Long code) throws Exception {
         logger.info("/reflection/deleteByCode  code= {}", code);
         if(Objects.isNull(code)) {
             logger.info("/reflection/deleteByCode  code为空");
@@ -87,10 +90,18 @@ public class ReflectionController {
         ReflectionPO reflectionPO = reflectionService.selectByCode(code);
         if(Objects.isNull(reflectionPO)) {
             logger.info("/reflection/deleteByCode  code对应信息不存在");
+            return new Result<>(Result.ErrorCode.OK.getCode(),"code对应信息不存在");
         }
-        reflectionService.delete(code);
+
+        try{
+            reflectionService.delete(code);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
         if(!Objects.isNull(reflectionService.selectByCode(code))) {
-            logger.error("/reflection/deleteByCode  code对应信息删除失败");
+            logger.error("/reflection/deleteByCode  code对应信息删除失败  reflectionPO={}", reflectionPO);
+            return new Result<>(Result.ErrorCode.ParamCheckError.getCode(),"code对应信息删除失败");
         }
         ReflectionVO reflectionVO = new ReflectionVO();
         BeanCopy.from(reflectionPO).to(reflectionVO).copy();
