@@ -4,12 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/health.iml" filepath="$PROJECT_DIR$/health.iml" />
       <module fileurl="file://$PROJECT_DIR$/health-api/health-api.iml" filepath="$PROJECT_DIR$/health-api/health-api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/health-api/health-api.iml" filepath="$PROJECT_DIR$/health-api/health-api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/health-model/health-model.iml" filepath="$PROJECT_DIR$/health-model/health-model.iml" />
       <module fileurl="file://$PROJECT_DIR$/health-model/health-model.iml" filepath="$PROJECT_DIR$/health-model/health-model.iml" />
       <module fileurl="file://$PROJECT_DIR$/health-utils/health-utils.iml" filepath="$PROJECT_DIR$/health-utils/health-utils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/health-utils/health-utils.iml" filepath="$PROJECT_DIR$/health-utils/health-utils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/health-webapp/health-webapp.iml" filepath="$PROJECT_DIR$/health-webapp/health-webapp.iml" />
       <module fileurl="file://$PROJECT_DIR$/health-webapp/health-webapp.iml" filepath="$PROJECT_DIR$/health-webapp/health-webapp.iml" />
     </modules>
   </component>

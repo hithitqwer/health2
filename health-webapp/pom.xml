@@ -6,6 +6,21 @@
 	<groupId>com.creator</groupId>
 	<artifactId>health-webapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>health-webapp</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<parent>
+		<groupId>com.creator</groupId>
+		<artifactId>health</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -14,43 +29,18 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>RELEASE</version>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.creator</groupId>
 			<artifactId>health-model</artifactId>
 		</dependency>
-	</dependencies>
-	<packaging>jar</packaging>
-
-	<name>health-webapp</name>
-	<description>Demo project for Spring Boot</description>
-
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.3.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-	</properties>
-
-	<dependencyManagement>
-	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<groupId>com.creator</groupId>
+			<artifactId>health-api</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.creator</groupId>
@@ -70,32 +60,33 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-            <version>2.0.2.RELEASE</version>
-        </dependency>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jodd</groupId>
+			<artifactId>jodd-bean</artifactId>
+		</dependency>
 	</dependencies>
-	</dependencyManagement>
+
 
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中-->
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<fork>true</fork> <!-- 如果没有该配置，devtools不会生效 -->
-					<!-- 指定该Main Class为全局的唯一入口 -->
-					<mainClass>com.creator.healthwebapp.HealthWebappApplication</mainClass>
-					<layout>ZIP</layout>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>

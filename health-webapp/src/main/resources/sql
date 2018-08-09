@@ -1,0 +1,114 @@
+CREATE TABLE if not exists `transaction`( 
+`id` int(11) NOT NULL AUTO_INCREMENT, 
+`code` bigint NOT NULL,
+`morning` nvarchar(1000), 
+`afternoon` nvarchar(1000), 
+`night` nvarchar(1000), 
+PRIMARY KEY (`ID`),
+INDEX(`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE if not exists `reflection`(
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`code` bigint NOT NULL,
+`dayReflection` nvarchar(1000),
+`surrounding` nvarchar(1000),
+PRIMARY KEY (`ID`),
+INDEX(`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE if not exists `breakfast`(
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`code` bigint NOT NULL,
+`food` nvarchar(1000),
+`partner` nvarchar(1000),
+`location` nvarchar(1000),
+PRIMARY KEY (`ID`),
+INDEX(`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE if not exists `dinner`(
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`code` bigint NOT NULL,
+`food` nvarchar(1000),
+`partner` nvarchar(1000),
+`location` nvarchar(1000),
+PRIMARY KEY (`ID`),
+INDEX(`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE if not exists `lunch`(
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`code` bigint NOT NULL,
+`food` nvarchar(1000),
+`partner` nvarchar(1000),
+`location` nvarchar(1000),
+PRIMARY KEY (`ID`),
+INDEX(`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE if not exists `transaction`(
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`code` bigint NOT NULL,
+`morning` nvarchar(1000),
+`afternoon` nvarchar(1000),
+`night` nvarchar(1000),
+PRIMARY KEY (`ID`),
+INDEX(`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE if not exists `weather`(
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`code` bigint NOT NULL,
+`weather` varchar(50),
+`humidity` int(11),
+`visibility` varchar(16),
+`pressure` int(11),
+`weatherCode` int(11),
+`sunrise` varchar(16),
+`sunset` varchar(16),
+`ultraviolet` int(11),
+`windForce` int(11),
+`airQuality` int(11),
+`WindDirectionString` varchar(30),
+`picPath` varchar(30),
+PRIMARY KEY (`ID`),
+INDEX(`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE if not exists `sleep`(
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`code` bigint NOT NULL,
+`lunchBreak` varchar(50),
+`morningWakeUpTime` varchar(16),
+`dream` varchar(500),
+PRIMARY KEY (`ID`),
+INDEX(`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE if not exists `body_overall`(
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`code` bigint NOT NULL,
+`abdomen` varchar(500),
+`overall` varchar(500),
+`energy` varchar(500),
+`waist` varchar(500),
+`exercise` varchar(500),
+`others` varchar(500),
+`anusFeel` varchar(500),
+`DefecationFeel` varchar(500),
+`DefecationFeelAfter` varchar(500),
+`DefecationTime` varchar(500),
+PRIMARY KEY (`ID`),
+INDEX(`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

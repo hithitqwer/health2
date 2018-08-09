@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.creator.mapper.UserMapper">
+    <resultMap id="UserMap" type="com.creator.model.user.User">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="userName" property="userName" jdbcType="VARCHAR"/>
+        <result column="userKey" property="userKey" jdbcType="VARCHAR"/>
+        <result column="userMsg" property="userMsg" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="User">
+        userId,userName,userName,userMsg
+    </sql>
+    <select id="countNumOfUser" resultType="java.lang.Integer">
+        select
+          count(1)
+        from
+          user
+    </select>
+    <insert id="insert" parameterType="com.creator.model.user.User" useGeneratedKeys="true">
+        insert user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userName != null">
+                userName,
+            </if>
+            <if test="userKey != null">
+                userKey,
+            </if>
+            <if test="userMsg != null">
+                userMsg,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userKey != null">
+                #{userKey,jdbcType=VARCHAR},
+            </if>
+            <if test="userMsg != null">
+                #{userMsg,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectByName" resultType="com.creator.model.user.User">
+        select
+        <include refid="User"/>
+        from
+        user
+        <where>
+            userName = #{userName,jdbcType=VARCHAR}
+        </where>
+    </select>
+    <select id="selectById" resultType="com.creator.model.user.User">
+        select
+        <include refid="User"/>
+        from
+        user
+        <where>
+            userId = #{userId,jdbcType=INTEGER}
+        </where>
+    </select>
+</mapper>

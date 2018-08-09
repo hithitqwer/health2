@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.creator.mapper.SleepMapper">
+    <select id="count" resultType="java.lang.Integer">
+        select count(1)
+        from sleep
+    </select>
+    <insert id="insert" parameterType="com.creator.model.SleepPO">
+        insert
+          sleep
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                code,
+            </if>
+            <if test="lunchBreak != null">
+                lunchBreak,
+            </if>
+            <if test="morningWakeUpTime != null">
+                morningWakeUpTime,
+            </if>
+            <if test="dream != null">
+                dream,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                #{code,jdbcType=BIGINT},
+            </if>
+            <if test="lunchBreak != null">
+                #{lunchBreak,jdbcType=VARCHAR},
+            </if>
+            <if test="morningWakeUpTime != null">
+                #{morningWakeUpTime,jdbcType=VARCHAR},
+            </if>
+            <if test="dream != null">
+                #{dream,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="update" parameterType="com.creator.model.SleepPO">
+        update
+          sleep
+        <set>
+            <if test="lunchBreak != null">
+                lunchBreak = #{lunchBreak,jdbcType=VARCHAR},
+            </if>
+            <if test="morningWakeUpTime != null">
+                morningWakeUpTime = #{morningWakeUpTime,jdbcType=VARCHAR},
+            </if>
+            <if test="dream != null">
+                dream = #{dream,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where code = #{code,jdbcType=BIGINT}
+    </update>
+    <select id="selectByCode" parameterType="java.lang.Long" resultType="com.creator.model.SleepPO">
+        select
+          code,lunchBreak,morningWakeUpTime,dream
+        from
+          sleep
+        where code = #{code,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByCode" parameterType="java.lang.Long">
+        delete from sleep
+        where code= #{code,jdbcType=BIGINT}
+    </delete>
+</mapper>

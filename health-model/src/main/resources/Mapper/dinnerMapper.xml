@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.creator.mapper.DinnerMapper">
+    <select id="count" resultType="java.lang.Integer">
+        select
+         count(1)
+        from
+         breakfast
+    </select>
+    <select id="selectByCode" parameterType="java.lang.Long" resultType="com.creator.model.food.DinnerPO">
+        select
+        *
+        from
+         breakfast
+        where code= #{code,jdbcType=BIGINT}
+    </select>
+    <update id="update" parameterType="com.creator.model.food.DinnerPO">
+        update breakfast
+        <set>
+            <if test="food != null">
+                food = #{food,jdbcType=VARCHAR}
+            </if>
+            <if test="partner != null">
+                partner = #{partner,jdbcType=VARCHAR}
+            </if>
+            <if test=" location != null">
+                location = #{location,jdbcType=VARCHAR}
+            </if>
+        </set>
+        <where>
+            code = #{code,jdbcType=BIGINT}
+        </where>
+    </update>
+    <insert id="insert" parameterType="com.creator.model.food.DinnerPO">
+        insert
+        breakfast
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                code,
+            </if>
+            <if test="food != null">
+                food,
+            </if>
+            <if test="partner != null">
+                partner,
+            </if>
+            <if test="location != null">
+                location,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                #{code,jdbcType=BIGINT},
+            </if>
+            <if test="food != null">
+                #{food,jdbcType=VARCHAR},
+            </if>
+            <if test="partner != null">
+                #{partner,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null">
+                #{location,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from
+        breakfast
+        <where>
+            code= #{code,jdbcType=BIGINT}
+        </where>
+    </delete>
+</mapper>
