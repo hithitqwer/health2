@@ -5,7 +5,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @author zhangzeyu
@@ -16,5 +15,5 @@ import java.util.Date;
 public class DefecationVO implements Serializable {
     private String feel;
     private String feelAfter;
-    private Date time;
+    private String time;
 }

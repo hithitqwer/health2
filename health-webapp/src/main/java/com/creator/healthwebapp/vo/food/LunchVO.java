@@ -5,12 +5,11 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.List;
 @Setter
 @Getter
 @ToString
 public class LunchVO implements Serializable {
-    private List<String> list;
-    private List<String> partner;
+    private String food;
+    private String partner;
     private String location;
 }

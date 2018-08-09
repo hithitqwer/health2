@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.creator.mapper.BodyOverallMapper">
+    <select id="count" resultType="java.lang.Integer">
+        select
+          count(1)
+        from
+          body_overall
+    </select>
+    <insert id="insert" parameterType="com.creator.model.BodyOverallPO">
+        insert
+        body_overall
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                code,
+            </if>
+            <if test="abdomen != null">
+                abdomen,
+            </if>
+            <if test="overall != null">
+                overall,
+            </if>
+            <if test="energy != null">
+                energy,
+            </if>
+            <if test="waist != null">
+                waist,
+            </if>
+            <if test="exercise != null">
+                exercise,
+            </if>
+            <if test="others != null">
+                others,
+            </if>
+            <if test="anusFeel != null">
+                anusFeel,
+            </if>
+            <if test="DefecationFeel != null">
+                DefecationFeel,
+            </if>
+            <if test="DefecationFeelAfter != null">
+                DefecationFeelAfter,
+            </if>
+            <if test="DefecationTime != null">
+                DefecationTime,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                #{code,jdbcType=BIGINT},
+            </if>
+            <if test="abdomen != null">
+                #{abdomen,jdbcType=VARCHAR},
+            </if>
+            <if test="overall != null">
+                #{overall,jdbcType=VARCHAR},
+            </if>
+            <if test="energy != null">
+                #{energy,jdbcType=VARCHAR},
+            </if>
+            <if test="waist != null">
+                #{waist,jdbcType=VARCHAR},
+            </if>
+            <if test="exercise != null">
+                #{exercise,jdbcType=VARCHAR},
+            </if>
+            <if test="others != null">
+                #{others,jdbcType=VARCHAR},
+            </if>
+            <if test="anusFeel != null">
+                #{anusFeel,jdbcType=VARCHAR},
+            </if>
+            <if test="DefecationFeel != null">
+                #{DefecationFeel,jdbcType=VARCHAR},
+            </if>
+            <if test="DefecationFeelAfter != null">
+                #{DefecationFeelAfter,jdbcType=VARCHAR},
+            </if>
+            <if test="DefecationTime != null">
+                #{DefecationTime,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectByCode" parameterType="java.lang.Long" resultType="com.creator.model.BodyOverallPO">
+        select
+         code,abdomen,overall,energy,waist,exercise,others,anusFeel,DefecationFeel,DefecationFeelAfter,DefecationTime
+         from body_overall
+         where code = #{code,jdbcType=VARCHAR}
+    </select>
+    <update id="update" parameterType="com.creator.model.BodyOverallPO">
+        update body_overall
+        <set>
+            <if test="abdomen != null">
+                abdomen = #{abdomen,jdbcType=VARCHAR}
+            </if>
+            <if test="overall != null">
+                overall = #{overall,jdbcType=VARCHAR}
+            </if>
+            <if test="energy != null">
+                energy = #{energy,jdbcType=VARCHAR}
+            </if>
+            <if test="waist != null">
+                waist = #{waist,jdbcType=VARCHAR}
+            </if>
+            <if test="exercise != null">
+                exercise = #{exercise,jdbcType=VARCHAR}
+            </if>
+            <if test="others != null">
+                others = #{others,jdbcType=VARCHAR}
+            </if>
+            <if test="anusFeel != null">
+                anusFeel = #{anusFeel,jdbcType=VARCHAR}
+            </if>
+            <if test="DefecationFeel != null">
+                DefecationFeel = #{DefecationFeel,jdbcType=VARCHAR}
+            </if>
+            <if test="DefecationFeelAfter != null">
+                DefecationFeelAfter = #{DefecationFeelAfter,jdbcType=VARCHAR}
+            </if>
+            <if test="DefecationTime != null">
+                DefecationTime = #{DefecationTime,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where code= #{code,jdbcType=BIGINT}
+    </update>
+    <delete id="deleteByCode" parameterType="java.lang.Long">
+        delete from body_overall
+        where code = #{code,jdbcType=BIGINT}
+    </delete>
+</mapper>

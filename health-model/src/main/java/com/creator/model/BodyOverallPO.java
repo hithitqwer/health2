@@ -1,22 +1,29 @@
-package com.creator.model.body;
+package com.creator.model;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.List;
-
 @Setter
 @Getter
 @ToString
 public class BodyOverallPO {
+    /**
+     * 整体的基本感觉
+     */
     private Integer id;
     private Long code;
     private String abdomen;
     private String overall;
-    private String anus;
     private String energy;
     private String waist;
     private String exercise;
-    private List<String> others;
+    private String others;
+    /**
+     *排便
+     */
+    private String anusFeel;
+    private String DefecationFeel;
+    private String DefecationFeelAfter;
+    private String DefecationTime;
 }

@@ -81,3 +81,34 @@ CREATE TABLE if not exists `weather`(
 PRIMARY KEY (`ID`),
 INDEX(`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE if not exists `sleep`(
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`code` bigint NOT NULL,
+`lunchBreak` varchar(50),
+`morningWakeUpTime` varchar(16),
+`dream` varchar(500),
+PRIMARY KEY (`ID`),
+INDEX(`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE if not exists `body_overall`(
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`code` bigint NOT NULL,
+`abdomen` varchar(500),
+`overall` varchar(500),
+`energy` varchar(500),
+`waist` varchar(500),
+`exercise` varchar(500),
+`others` varchar(500),
+`anusFeel` varchar(500),
+`DefecationFeel` varchar(500),
+`DefecationFeelAfter` varchar(500),
+`DefecationTime` varchar(500),
+PRIMARY KEY (`ID`),
+INDEX(`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

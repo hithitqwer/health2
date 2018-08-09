@@ -105,7 +105,7 @@ public class ReflectionController {
         }
         ReflectionVO reflectionVO = new ReflectionVO();
         BeanCopy.from(reflectionPO).to(reflectionVO).copy();
-        logger.info("/reflection/deleteByCode  code对应信息 {}  已删除", reflectionVO);
+        logger.info("/reflection/deleteByCode  code对应信息 reflectionVO={}  已删除", reflectionVO);
         return new Result<>(Result.ErrorCode.OK.getCode(), reflectionVO, Result.ErrorCode.OK.getMsg());
     }
 }

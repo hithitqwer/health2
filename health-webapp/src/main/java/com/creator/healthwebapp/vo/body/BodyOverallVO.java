@@ -5,7 +5,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.List;
 /**
  * @author zhangzeyu
  */
@@ -13,11 +12,13 @@ import java.util.List;
 @Setter
 @ToString
 public class BodyOverallVO implements Serializable {
+    private Long code;
     private String abdomen;
     private String overall;
-    private String anus;
+    private DefecationVO defecationVO;
     private String energy;
     private String waist;
     private String exercise;
-    private List<String> others;
+    private String others;
+    private String anusFeel;
 }

@@ -65,26 +65,45 @@ public class FoodServiceImp implements FoodService {
 
     @Override
     public void insertBreakfast(BreakfastPO breakfastPO) {
-        if(Objects.isNull(breakfastPO)) {
-            return;
+        try{
+            if(Objects.isNull(selectBreakfastByCode(breakfastPO.getCode()))) {
+                breakfastMapper.insert(breakfastPO);
+            }else {
+                breakfastMapper.update(breakfastPO);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException();
         }
-        breakfastMapper.insert(breakfastPO);
+
     }
 
     @Override
     public void insertDinner(DinnerPO dinnerPO) {
-        if(Objects.isNull(dinnerPO)) {
-            return;
+        try{
+            if(Objects.isNull(selectDinnerByCode(dinnerPO.getCode()))) {
+                dinnerMapper.insert(dinnerPO);
+            }else {
+                dinnerMapper.update(dinnerPO);
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException();
         }
-        dinnerMapper.insert(dinnerPO);
     }
 
     @Override
     public void insertLunch(LunchPO lunchPO) {
-        if(Objects.isNull(lunchPO)) {
-            return;
+        try{
+            if(Objects.isNull(selectLunchByCode(lunchPO.getCode()))) {
+                lunchMapper.insert(lunchPO);
+            }else {
+                lunchMapper.update(lunchPO);
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException();
         }
-        lunchMapper.insert(lunchPO);
     }
 
     @Override

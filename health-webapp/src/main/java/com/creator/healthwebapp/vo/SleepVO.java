@@ -13,6 +13,7 @@ import java.io.Serializable;
 @Getter
 @ToString
 public class SleepVO implements Serializable {
+    private Long code;
     private String lunchBreak;
     private String morningWakeUpTime;
     private String dream;

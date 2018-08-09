@@ -4,14 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
+import java.io.Serializable;
 @Setter
+@Getter
 @ToString
-public class FoodVO {
+public class FoodInputVO implements Serializable {
     private Long code;
-    private Integer breakfastNum;
-    private Integer dinnerNum;
-    private Integer lunchNum;
     private BreakfastVO breakfastVO;
     private DinnerVO dinnerVO;
     private LunchVO lunchVO;
