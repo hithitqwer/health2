@@ -4,6 +4,9 @@ import com.creator.model.food.BreakfastPO;
 import com.creator.model.food.DinnerPO;
 import com.creator.model.food.LunchPO;
 
+/**
+ * @author zhangzeyu
+ */
 public interface FoodService {
     /**
      * 读取数据行数

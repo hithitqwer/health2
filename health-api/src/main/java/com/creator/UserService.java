@@ -2,6 +2,9 @@ package com.creator;
 
 import com.creator.model.user.User;
 
+/**
+ * @author zhangzeyu
+ */
 public interface UserService {
     int countNumOfUser();
 

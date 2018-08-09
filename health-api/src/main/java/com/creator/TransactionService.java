@@ -2,6 +2,9 @@ package com.creator;
 
 import com.creator.model.TransactionPO;
 
+/**
+ * @author zhangzeyu
+ */
 public interface TransactionService {
 
     int count();

@@ -2,6 +2,9 @@ package com.creator;
 
 import com.creator.model.WeatherPO;
 
+/**
+ * @author zhangzeyu
+ */
 public interface WeatherService {
 
     int countNum();
