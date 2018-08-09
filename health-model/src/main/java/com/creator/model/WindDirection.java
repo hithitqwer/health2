@@ -1,5 +1,9 @@
 package com.creator.model;
 
+/**
+ * @author zhangzeyu
+ */
+
 public enum WindDirection {
 
     /**
