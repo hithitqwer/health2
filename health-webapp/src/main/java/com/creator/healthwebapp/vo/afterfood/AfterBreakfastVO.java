@@ -5,7 +5,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author zhangzeyu
@@ -14,7 +13,8 @@ import java.util.List;
 @Setter
 @ToString
 public class AfterBreakfastVO implements Serializable {
-    private List<String> medicine;
-    private List<String> fruits;
-    private List<String> snacks;
+    private Long code;
+    private String medicine;
+    private String fruits;
+    private String snacks;
 }

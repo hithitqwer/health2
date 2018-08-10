@@ -5,7 +5,7 @@
         select count(1)
         from sleep
     </select>
-    <insert id="insert" parameterType="com.creator.model.SleepPO">
+    <insert id="insert" parameterType="com.creator.model.SleepPO" useGeneratedKeys="true" keyProperty="id">
         insert
           sleep
         <trim prefix="(" suffix=")" suffixOverrides=",">

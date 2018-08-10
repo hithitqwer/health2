@@ -16,7 +16,7 @@
         from
           user
     </select>
-    <insert id="insert" parameterType="com.creator.model.user.User" useGeneratedKeys="true">
+    <insert id="insert" parameterType="com.creator.model.user.User" useGeneratedKeys="true" keyProperty="id">
         insert user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="userName != null">

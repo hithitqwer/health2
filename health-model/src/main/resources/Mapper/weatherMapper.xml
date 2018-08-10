@@ -10,7 +10,7 @@
         from
           weather
     </select>
-    <insert id="insertWeather"  parameterType="com.creator.model.WeatherPO" >
+    <insert id="insertWeather"  parameterType="com.creator.model.WeatherPO" useGeneratedKeys="true" keyProperty="id">
         insert weather
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="code != null">

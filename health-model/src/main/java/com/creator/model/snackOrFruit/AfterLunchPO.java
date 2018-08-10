@@ -4,18 +4,16 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.List;
-
 /**
  * @author zhangzeyu
  */
 @Setter
 @Getter
 @ToString
-public class AfterDinner{
+public class AfterLunchPO {
     private Integer id;
     private Long code;
-    private List<String> medicine;
-    private List<String> fruits;
-    private List<String> snacks;
+    private String medicine;
+    private String fruits;
+    private String snacks;
 }

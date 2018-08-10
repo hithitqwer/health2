@@ -112,3 +112,36 @@ CREATE TABLE if not exists `body_overall`(
 PRIMARY KEY (`ID`),
 INDEX(`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE if not exists `AfterBreakfast`(
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`code` bigint NOT NULL,
+`medicine` nvarchar(1000),
+`fruits` nvarchar(1000),
+`snacks` nvarchar(1000),
+PRIMARY KEY (`ID`),
+INDEX(`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE if not exists `AfterDinner`(
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`code` bigint NOT NULL,
+`medicine` nvarchar(1000),
+`fruits` nvarchar(1000),
+`snacks` nvarchar(1000),
+PRIMARY KEY (`ID`),
+INDEX(`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE if not exists `AfterLunch`(
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`code` bigint NOT NULL,
+`medicine` nvarchar(1000),
+`fruits` nvarchar(1000),
+`snacks` nvarchar(1000),
+PRIMARY KEY (`ID`),
+INDEX(`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
