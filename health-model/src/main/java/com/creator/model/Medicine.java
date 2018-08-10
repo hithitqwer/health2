@@ -14,7 +14,6 @@ import java.util.List;
 @Getter
 @ToString
 public class Medicine implements Serializable {
-    private Integer id;
     private Long code;
     private List<String> medicine;
     private List<String> medicineMorning;

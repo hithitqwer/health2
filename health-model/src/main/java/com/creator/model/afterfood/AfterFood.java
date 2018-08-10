@@ -1,4 +1,4 @@
-package com.creator.model.snackOrFruit;
+package com.creator.model.afterfood;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,8 +10,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class AfterLunchPO {
-    private Long code;
+public class AfterFood {
     private String medicine;
     private String fruits;
     private String snacks;

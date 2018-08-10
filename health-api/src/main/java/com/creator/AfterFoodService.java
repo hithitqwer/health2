@@ -1,14 +1,13 @@
 package com.creator;
 
-import com.creator.model.snackOrFruit.AfterBreakfastPO;
-import com.creator.model.snackOrFruit.AfterDinnerPO;
-import com.creator.model.snackOrFruit.AfterFoodPO;
-import com.creator.model.snackOrFruit.AfterLunchPO;
+import com.creator.model.snackOrFruit.*;
 
 /**
  * @author zhangzeyu
  */
 public interface AfterFoodService {
+
+    AfterFoodNum count();
 
     void writeAfterFood(AfterFoodPO foodPO);
 

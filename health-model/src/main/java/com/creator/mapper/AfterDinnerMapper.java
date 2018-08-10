@@ -1,6 +1,6 @@
 package com.creator.mapper;
 
-import com.creator.AfterDinner;
+import com.creator.model.snackOrFruit.AfterDinnerPO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -13,11 +13,11 @@ public interface AfterDinnerMapper {
 
     int count();
 
-    void insert(AfterDinner afterDinner);
+    void insert(AfterDinnerPO afterDinner);
 
-    AfterDinner select(Long code);
+    AfterDinnerPO select(Long code);
 
-    void update(AfterDinner afterDinner);
+    void update(AfterDinnerPO afterDinner);
 
     void delete(Long code);
 }

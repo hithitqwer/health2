@@ -10,9 +10,8 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class AfterLunchPO {
-    private Long code;
-    private String medicine;
-    private String fruits;
-    private String snacks;
+public class AfterFoodNum {
+    private Integer AfterBreakfastNum;
+    private Integer AfterDinnerNum;
+    private Integer AfterLunchNum;
 }

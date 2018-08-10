@@ -11,7 +11,6 @@ import lombok.ToString;
 @Getter
 @ToString
 public class AfterDinnerPO{
-    private Integer id;
     private Long code;
     private String medicine;
     private String fruits;
