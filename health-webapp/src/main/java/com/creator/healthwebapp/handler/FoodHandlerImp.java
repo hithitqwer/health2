@@ -29,6 +29,7 @@ public class FoodHandlerImp implements FoodHandler {
     @Resource
     private LoginService loginService;
 
+    @Override
     public FoodVO selectByCode(Long code) {
         Integer breakfastNum = foodService.countBreakfast();
         Integer dinnerNum = foodService.countDinner();
@@ -66,6 +67,7 @@ public class FoodHandlerImp implements FoodHandler {
         return foodVO;
     }
 
+    @Override
     @Transactional(rollbackFor = Exception.class)
     public void insertProcess(FoodInputVO foodInputVO) {
         logger.info("foodInputVO  insert  process    foodInputVO= {}",foodInputVO);
@@ -110,6 +112,7 @@ public class FoodHandlerImp implements FoodHandler {
         }
     }
 
+    @Override
     @Transactional(rollbackFor = Exception.class)
     public void  deleteProcess(Long code) {
         logger.info("foodVO delete process   code= {}",code);

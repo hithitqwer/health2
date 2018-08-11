@@ -8,4 +8,6 @@ import com.creator.healthwebapp.vo.afterfood.AfterFoodVO;
 public interface AfterFoodHandler {
 
     void write(AfterFoodVO afterFoodVO);
+
+    AfterFoodVO select(Long code);
 }

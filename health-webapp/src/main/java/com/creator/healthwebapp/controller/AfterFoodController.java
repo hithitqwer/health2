@@ -9,10 +9,7 @@ import com.creator.model.snackOrFruit.AfterFoodNum;
 import com.creator.result.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Objects;
@@ -43,9 +40,6 @@ public class AfterFoodController {
     public Result<AfterFoodNum> count() {
         logger.info("/afterfood/count  ");
         AfterFoodNum afterFoodNum = afterFoodService.count();
-
-        aFoodService.write();
-
         logger.info("/afterfood/count    afterFoodNum= {}", afterFoodNum);
         return new Result<>(Result.ErrorCode.OK.getCode(), afterFoodNum, Result.ErrorCode.OK.getMsg());
     }
@@ -63,6 +57,37 @@ public class AfterFoodController {
             return new Result<>(Result.ErrorCode.ParamCheckError.getCode(),"信息写入失败");
         }
         logger.info("/afterfood/write   信息写入成功 afterFoodVO= {}", afterFoodVO);
+        return new Result<>(Result.ErrorCode.OK.getCode(), afterFoodVO, Result.ErrorCode.OK.getMsg());
+    }
+
+    @RequestMapping("/select")
+    @ResponseBody
+    public Result<AfterFoodVO> select(@RequestParam("code") Long code) {
+        logger.info("/afterfood/select   code= {}", code);
+        AfterFoodVO afterFoodVO = afterFoodHandler.select(code);
+        if(Objects.isNull(afterFoodVO)) {
+            logger.info("/afterfood/select   code= {}对应信息不存在", code);
+            return new Result<>(Result.ErrorCode.OK.getCode(),"查询信息不存在");
+        }
+        logger.info("/afterfood/select   code= {}  afterFoodVO= {}", code, afterFoodVO);
+        return new Result<>(Result.ErrorCode.OK.getCode(), afterFoodVO, Result.ErrorCode.OK.getMsg());
+    }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public Result<AfterFoodVO> delete(@RequestParam("code") Long code) {
+        logger.info("/afterfood/delete   code= {}", code);
+        AfterFoodVO afterFoodVO = afterFoodHandler.select(code);
+        if(Objects.isNull(code) || Objects.isNull(afterFoodVO)) {
+            logger.info("/afterfood/delete   code= {}对应信息不存在", code);
+            return new Result<>(Result.ErrorCode.OK.getCode(), "code对应信息不存在");
+        }
+        afterFoodService.deleteAfterFood(code);
+        if(!Objects.isNull(afterFoodHandler.select(code))) {
+            logger.error("/afterfood/delete   code= {}对应信息删除失败", code);
+            return new Result<>(Result.ErrorCode.InvokeError.getCode(), "code对应信息删除失败");
+        }
+        logger.info("/afterfood/delete   code= {}对应信息已删除", code);
         return new Result<>(Result.ErrorCode.OK.getCode(), afterFoodVO, Result.ErrorCode.OK.getMsg());
     }
 }

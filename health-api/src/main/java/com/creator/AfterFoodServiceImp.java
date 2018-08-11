@@ -122,6 +122,10 @@ public class AfterFoodServiceImp implements AfterFoodService {
             afterFoodPO.setAfterLunchPO(afterLunchPO);
         }
 
+        if(Objects.isNull(afterBreakfastPO) && Objects.isNull(afterDinnerPO) && Objects.isNull(afterLunchPO)) {
+            return null;
+        }
+
         return afterFoodPO;
     }
 

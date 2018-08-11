@@ -13,7 +13,7 @@
         values
         (#{code,jdbcType=BIGINT},#{medicine,jdbcType=VARCHAR},#{fruits,jdbcType=VARCHAR},#{snacks,jdbcType=VARCHAR})
     </insert>
-    <select id="select" parameterType="java.lang.Integer" resultType="com.creator.model.snackOrFruit.AfterDinnerPO">
+    <select id="select" parameterType="java.lang.Long" resultType="com.creator.model.snackOrFruit.AfterDinnerPO">
         select
          *
         from afterdinner
